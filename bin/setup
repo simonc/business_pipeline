@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+IFS=$'\n\t'
+set -vx
+
+bundle install
+
+cat > .git/hooks/pre-commit <<EOF
+#!/usr/bin/env sh
+
+unset GIT_DIR
+
+bundle exec rubocop -D
+if [ \$? -eq 1 ]; then exit 1; fi
+EOF
+
+chmod +x .git/hooks/pre-commit
