@@ -225,7 +225,7 @@ class IndexProcess
 
     puts "Context before call is: #{context.inspect}"
 
-    process.perform
+    process.call
 
     puts "Context after call is: #{context.inspect}"
   end
@@ -240,6 +240,8 @@ class IndexProcess
 end
 ```
 
+**Important:** don’t call `process.perform` inside a Hook, it would trigger the hooks and create an infinite loop.
+
 ### Hooks execution order
 
 Execution of _around_ hooks will always be the first one. Then the _before_ hooks and to finish the _after_ ones. So writing the following Process
@@ -250,7 +252,7 @@ class IndexProcess
 
   around do |process|
     puts 'AROUND 1 START'
-    process.perform
+    process.call
     puts 'AROUND 1 END'
   end
 
@@ -259,7 +261,7 @@ class IndexProcess
 
   around do |process|
     puts 'AROUND 2 START'
-    process.perform
+    process.call
     puts 'AROUND 2 END'
   end
 
@@ -290,7 +292,7 @@ If for instance you wanted to wrap every Process in a transaction (which would b
 ```ruby
 class TransactionWrapping
   def call(process, context, config)
-    ActiveRecord::Base.transaction { process.perform }
+    ActiveRecord::Base.transaction { process.call }
   end
 end
 
