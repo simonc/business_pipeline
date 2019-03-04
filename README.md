@@ -128,7 +128,7 @@ In our `SortUsers` and `PaginateUsers` Steps we used values from our _context_ t
 When calling a Process, you can provide an initial _context_ by passing a Hash as argument:
 
 ```ruby
-UsersIndex.new.call(page: 1, sort: { created_at: :desc })
+UsersIndex.new.perform(page: 1, sort: { created_at: :desc })
 ```
 
 You can then use this initial _context_ in all your Steps.
@@ -136,7 +136,7 @@ You can then use this initial _context_ in all your Steps.
 A Process returns the modified _context_ at the end of its execution. You can interrogate this _context_ to know if everything went according to plan:
 
 ```ruby
-result = UsersIndex.new.call(page: 1, sort: { created_at: :desc })
+result = UsersIndex.new.perform(page: 1, sort: { created_at: :desc })
 
 result.success? # => true
 result.failure? # => false
@@ -153,7 +153,7 @@ Before we get started we need to first take a look at a Process' initialization.
 
 ```ruby
 process = IndexProcess.new(collection_name: 'users', model_class: User)
-process.call(page: 1, sort: { created_at: :desc })
+process.perform(page: 1, sort: { created_at: :desc })
 ```
 
 ### Generic Steps
@@ -225,7 +225,7 @@ class IndexProcess
 
     puts "Context before call is: #{context.inspect}"
 
-    process.call
+    process.perform
 
     puts "Context after call is: #{context.inspect}"
   end
@@ -250,7 +250,7 @@ class IndexProcess
 
   around do |process|
     puts 'AROUND 1 START'
-    process.call
+    process.perform
     puts 'AROUND 1 END'
   end
 
@@ -259,7 +259,7 @@ class IndexProcess
 
   around do |process|
     puts 'AROUND 2 START'
-    process.call
+    process.perform
     puts 'AROUND 2 END'
   end
 
@@ -290,7 +290,7 @@ If for instance you wanted to wrap every Process in a transaction (which would b
 ```ruby
 class TransactionWrapping
   def call(process, context, config)
-    ActiveRecord::Base.transaction { process.call }
+    ActiveRecord::Base.transaction { process.perform }
   end
 end
 
@@ -394,7 +394,7 @@ end
 Calling `context.fail!` will stop the execution and merge the information you give it to the _context_.
 
 ```ruby
-result = CheckingProcess.new.call(continue: 'no')
+result = CheckingProcess.new.perform(continue: 'no')
 
 result.success? # => false
 result.failure? # => true
