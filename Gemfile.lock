@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    business_pipeline (0.1.1)
+    business_pipeline (0.1.2)
 
 GEM
   remote: https://rubygems.org/
