@@ -111,6 +111,20 @@ RSpec.describe BusinessPipeline::Step do
 
         expect(result.hooks_ran).to be true
       end
+
+      context 'and adds its own hooks' do
+        before do
+          Class.new(subject) do
+            before { |context| context.child_hooks = true }
+          end
+        end
+
+        it 'doesn’t change the original Step’s hooks' do
+          result = subject.new.perform
+
+          expect(result.child_hooks).to be nil
+        end
+      end
     end
   end
 end

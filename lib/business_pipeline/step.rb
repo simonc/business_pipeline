@@ -17,7 +17,7 @@ module BusinessPipeline
         private :config
 
         def self.inherited(child_class)
-          child_class.instance_variable_set(:@hooks, hooks)
+          child_class.instance_variable_set(:@hooks, hooks.clone)
         end
       end
     end
