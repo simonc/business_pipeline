@@ -2,6 +2,10 @@
 
 ## 0.1.2
 
+* Fixing hooks inheritence to prevent modifying parent class hooks
+
+## 0.1.2
+
 * Fixing processes calling inside Hooks
 
 ## 0.1.1
