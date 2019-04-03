@@ -76,7 +76,7 @@ end
 class SortUsers
   include BusinessPipeline::Step
 
-def call
+  def call
     context.users = context.users.order(context.sort)
   end
 end
@@ -84,7 +84,7 @@ end
 class PaginateUsers
   include BusinessPipeline::Step
 
-def call
+  def call
     context.users = context.user.page(context.page)
   end
 end
