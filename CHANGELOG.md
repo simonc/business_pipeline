@@ -1,6 +1,6 @@
 # Changelog
 
-## HEAD
+## 0.2.0
 
 * Adding Ruby 2.7 compatibility
 
