@@ -1,5 +1,9 @@
 # Changelog
 
+## HEAD
+
+* Adding Ruby 2.7 compatibility
+
 ## 0.1.2
 
 * Fixing hooks inheritence to prevent modifying parent class hooks
