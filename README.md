@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/simonc/business_pipeline.svg?branch=master)](https://travis-ci.org/simonc/business_pipeline)
+
 # BusinessPipeline
 
 BusinessPipeline (BP) aim is to help organize your app's logic in a generic way. You define business bricks that you can then plug together to build more eveolved pipelines.

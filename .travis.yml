@@ -1,0 +1,8 @@
+language: ruby
+cache: bundler
+before_install:
+  - gem install bundler -v $(tail -1 Gemfile.lock)
+rvm:
+  - 2.5
+  - 2.6
+  - 2.7
