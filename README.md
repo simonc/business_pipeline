@@ -1,5 +1,9 @@
 [![Build Status](https://travis-ci.org/simonc/business_pipeline.svg?branch=master)](https://travis-ci.org/simonc/business_pipeline)
 
+## Deprecated
+
+This gem is no longer active and the recommended alternative is [dry-transactions](https://dry-rb.org/gems/dry-transaction).
+
 # BusinessPipeline
 
 BusinessPipeline (BP) aim is to help organize your app's logic in a generic way. You define business bricks that you can then plug together to build more eveolved pipelines.
