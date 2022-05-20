@@ -37,7 +37,7 @@ module BusinessPipeline
     end
 
     private def update!(context)
-      context.each { |key, value| modifiable?[key.to_sym] = value }
+      context.each { |key, value| self[key.to_sym] = value }
     end
   end
 end
