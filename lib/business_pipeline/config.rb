@@ -3,14 +3,15 @@
 require 'ostruct'
 
 module BusinessPipeline
-  class Config < OpenStruct
+  class Config
     def initialize(hash = nil, &block)
-      super(hash)
+      @data = OpenStruct.new(hash)
+
       instance_eval(&block) if block
     end
 
     def fetch(key)
-      value = self[key.to_sym]
+      value = data[key.to_sym]
 
       return value unless value.nil?
       return yield(key) if block_given?
@@ -18,15 +19,17 @@ module BusinessPipeline
       fail KeyError, key
     end
 
-    # rubocop:disable Style/MissingRespondToMissing
     def method_missing(meth, *args, &block)
       if args.size.zero? || meth.to_s.end_with?('=')
-        super
+        data.public_send(meth, *args, &block)
       else
-        self[meth] = args.first
+        data[meth] = args.first
       end
     end
-    # rubocop:enable Style/MissingRespondToMissing
+
+    def respond_to_missing?(meth, include_private = false)
+      data.respond_to?(meth, include_private) || super
+    end
 
     attr_reader :data
     private :data

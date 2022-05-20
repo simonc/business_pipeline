@@ -16,10 +16,11 @@ RSpec.describe BusinessPipeline::Config do
 
     it 'evals the provided block' do
       config = described_class.new do
-        name 'Irvin'
+        name 'Name 1'
+        name 'Name 2'
       end
 
-      expect(config.name).to eq 'Irvin'
+      expect(config.name).to eq 'Name 2'
     end
   end
 
