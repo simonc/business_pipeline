@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    business_pipeline (0.3.0)
+    business_pipeline (0.3.1)
 
 GEM
   remote: https://rubygems.org/
@@ -92,4 +92,4 @@ DEPENDENCIES
   simplecov (~> 0.18.5)
 
 BUNDLED WITH
-   2.1.4
+   2.2.22

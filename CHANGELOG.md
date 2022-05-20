@@ -1,6 +1,6 @@
 # Changelog
 
-## HEAD
+## 0.3.1
 
 * Fixing `Config` compatibility with Ruby 3+
 
